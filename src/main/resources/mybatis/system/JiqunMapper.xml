@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.JiqunDao">
+
+	<select id="get" resultType="com.bootdo.system.domain.JiqunDO">
+		select `id`,`ip`,`hostname`,`type`,`pingtai`,`version`,`cmversion`,`fuzeren`,`cmuser`,`cmpassword` from wsd_jiqun where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.system.domain.JiqunDO">
+		select `id`,`ip`,`hostname`,`type`,`pingtai`,`version`,`cmversion`,`fuzeren`,`cmuser`,`cmpassword` from wsd_jiqun
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="ip != null and ip != ''"> and ip like concat(concat("%",#{ip}),"%") </if>
+		  		  <if test="hostname != null and hostname != ''"> and hostname = #{hostname} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="pingtai != null and pingtai != ''"> and pingtai = #{pingtai} </if>
+		  		  <if test="version != null and version != ''"> and version = #{version} </if>
+		  		  <if test="fuzeren != null and fuzeren != ''"> and fuzeren = #{fuzeren} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from wsd_jiqun
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="ip != null and ip != ''"> and ip like concat(concat("%",#{ip}),"%") </if>
+		  		  <if test="hostname != null and hostname != ''"> and hostname = #{hostname} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="pingtai != null and pingtai != ''"> and pingtai =#{pingtai} </if>
+		  		  <if test="version != null and version != ''"> and version = #{version} </if>
+		  		  <if test="fuzeren != null and fuzeren != ''"> and fuzeren = #{fuzeren} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.system.domain.JiqunDO">
+		insert into wsd_jiqun
+		(
+			`id`, 
+			`ip`, 
+			`hostname`, 
+			`type`, 
+			`pingtai`, 
+			`version`,
+			`cmversion`,
+			`fuzeren`,
+			`cmuser`,
+			`cmpassword`
+		)
+		values
+		(
+			#{id}, 
+			#{ip}, 
+			#{hostname}, 
+			#{type}, 
+			#{pingtai}, 
+			#{version},
+			#{cmversion},
+			#{fuzeren},
+			#{cmuser},
+			#{cmpassword}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.system.domain.JiqunDO">
+		update wsd_jiqun 
+		<set>
+			<if test="ip != null">`ip` = #{ip}, </if>
+			<if test="hostname != null">`hostname` = #{hostname}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="pingtai != null">`pingtai` = #{pingtai}, </if>
+			<if test="version != null">`version` = #{version}, </if>
+			<if test="cmversion != null">`cmversion` = #{cmversion},</if>
+			<if test="fuzeren != null">`fuzeren` = #{fuzeren}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from wsd_jiqun where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from wsd_jiqun where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<select id="pingtai" resultType="java.lang.String">
+		select distinct(pingtai) from wsd_jiqun
+	</select>
+	<select id="version" resultType="java.lang.String">
+		select distinct `version` from wsd_jiqun
+	</select>
+	<select id="cmversion" resultType="java.lang.String">
+		select distinct `cmversion` from wsd_jiqun
+	</select>
+</mapper>

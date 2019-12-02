@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.system.dao.InfoDao">
+
+	<select id="get" resultType="com.bootdo.system.domain.InfoDO">
+		select `ID`,`IP`,`CPU_CORE`,`memory_capacity`,`DISK_SIZE`,`SYSTEMS_DESC`,`xuliehao`,`xinhao`,`leixin`,`functionary` from linux_info where ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.system.domain.InfoDO">
+		select `ID`,`IP`,`CPU_CORE`,`memory_capacity`,`DISK_SIZE`,`SYSTEMS_DESC`,`xuliehao`,`xinhao`,`leixin`,`functionary` from linux_info
+        <where>  
+		  		  <if test="id != null and id != ''"> and ID = #{id} </if>
+		  		  <if test="ip != null and ip != ''"> and IP like concat(concat("%",#{ip}),"%") </if>
+		  		  <if test="cpuCore != null and cpuCore != ''"> and CPU_CORE = #{cpuCore} </if>
+		  		  <if test="memoryCapacity != null and memoryCapacity != ''"> and memory_capacity = #{memoryCapacity} </if>
+		  		  <if test="diskSize != null and diskSize != ''"> and DISK_SIZE = #{diskSize} </if>
+		  		  <if test="systemsDesc != null and systemsDesc != ''"> and SYSTEMS_DESC = #{systemsDesc} </if>
+		  		  <if test="xuliehao != null and xuliehao != ''"> and xuliehao = #{xuliehao} </if>
+		  		  <if test="xinhao != null and xinhao != ''"> and xinhao = #{xinhao} </if>
+		  		  <if test="leixin != null and leixin != ''"> and leixin = #{leixin} </if>
+		  		  <if test="functionary != null and functionary != ''"> and functionary like concat(concat("%",#{functionary}),"%") </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ID
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from linux_info
+		 <where>  
+		  		  <if test="id != null and id != ''"> and ID = #{id} </if>
+		  		  <if test="ip != null and ip != ''"> and IP like concat(concat("%",#{ip}),"%") </if>
+		  		  <if test="cpuCore != null and cpuCore != ''"> and CPU_CORE = #{cpuCore} </if>
+		  		  <if test="memoryCapacity != null and memoryCapacity != ''"> and memory_capacity = #{memoryCapacity} </if>
+		  		  <if test="diskSize != null and diskSize != ''"> and DISK_SIZE = #{diskSize} </if>
+		  		  <if test="systemsDesc != null and systemsDesc != ''"> and SYSTEMS_DESC = #{systemsDesc} </if>
+		  		  <if test="xuliehao != null and xuliehao != ''"> and xuliehao = #{xuliehao} </if>
+		  		  <if test="xinhao != null and xinhao != ''"> and xinhao = #{xinhao} </if>
+		  		  <if test="leixin != null and leixin != ''"> and leixin = #{leixin} </if>
+		  		  <if test="functionary != null and functionary != ''"> and functionary like concat(concat("%",#{functionary}),"%") </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.system.domain.InfoDO" useGeneratedKeys="true" keyProperty="id">
+		insert into linux_info
+		(
+			`IP`, 
+			`CPU_CORE`, 
+			`memory_capacity`, 
+			`DISK_SIZE`, 
+			`SYSTEMS_DESC`, 
+			`xuliehao`, 
+			`xinhao`, 
+			`leixin`, 
+			`functionary`
+		)
+		values
+		(
+			#{ip}, 
+			#{cpuCore}, 
+			#{memoryCapacity}, 
+			#{diskSize}, 
+			#{systemsDesc}, 
+			#{xuliehao}, 
+			#{xinhao}, 
+			#{leixin}, 
+			#{functionary}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.system.domain.InfoDO">
+		update linux_info 
+		<set>
+			<if test="ip != null">`IP` = #{ip}, </if>
+			<if test="cpuCore != null">`CPU_CORE` = #{cpuCore}, </if>
+			<if test="memoryCapacity != null">`memory_capacity` = #{memoryCapacity}, </if>
+			<if test="diskSize != null">`DISK_SIZE` = #{diskSize}, </if>
+			<if test="systemsDesc != null">`SYSTEMS_DESC` = #{systemsDesc}, </if>
+			<if test="xuliehao != null">`xuliehao` = #{xuliehao}, </if>
+			<if test="xinhao != null">`xinhao` = #{xinhao}, </if>
+			<if test="leixin != null">`leixin` = #{leixin}, </if>
+			<if test="functionary != null">`functionary` = #{functionary}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from linux_info where ID = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from linux_info where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

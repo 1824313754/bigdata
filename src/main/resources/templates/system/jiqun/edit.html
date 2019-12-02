@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${jiqun.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">IP：</label>
+								<div class="col-sm-8">
+									<input id="ip" name="ip" th:value="${jiqun.ip}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">主机名：</label>
+								<div class="col-sm-8">
+									<input id="hostname" name="hostname" th:value="${jiqun.hostname}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">机器类型：</label>
+								<div class="col-sm-8">
+									<input id="type" name="type" th:value="${jiqun.type}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">所属平台：</label>
+								<div class="col-sm-8">
+									<input id="pingtai" name="pingtai" th:value="${jiqun.pingtai}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">CDH版本：</label>
+								<div class="col-sm-8">
+									<input id="version" name="version" th:value="${jiqun.version}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">CM版本：</label>
+								<div class="col-sm-8">
+									<input id="cmversion" name="cmversion" th:value="${jiqun.cmversion}" class="form-control" type="text">
+								</div>
+							</div>
+
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">负责人：</label>
+								<div class="col-sm-8">
+									<input id="fuzeren" name="fuzeren" th:value="${jiqun.fuzeren}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">CM用户名：</label>
+								<div class="col-sm-8">
+									<input id="cmuser" name="cmuser" th:value="${jiqun.cmuser}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">CM密码：</label>
+								<div class="col-sm-8">
+									<input id="cmpassword" name="cmpassword" th:value="${jiqun.cmpassword}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/jiqun/edit.js">
+	</script>
+</body>
+</html>

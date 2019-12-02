@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${zcuser.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">名称：</label>
+								<div class="col-sm-8">
+									<input id="mingchen" name="mingchen" th:value="${zcuser.mingchen}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-8">
+									<input id="zcuser" name="zcuser" th:value="${zcuser.zcuser}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-8">
+									<input id="zcpassword" name="zcpassword" th:value="${zcuser.zcpassword}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">系统-负责人：</label>
+								<div class="col-sm-8">
+									<input id="zcfuzeren" name="zcfuzeren" th:value="${zcuser.zcfuzeren}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="zctime" name="zctime" th:value="${zcuser.zctime}" class="form-control" type="date">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">应用类型：</label>
+								<div class="col-sm-8">
+									<input id="zctype" name="zctype" th:value="${zcuser.zctype}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/zcuser/edit.js">
+	</script>
+</body>
+</html>

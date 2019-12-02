@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">数据库IP：</label>
+								<div class="col-sm-8">
+									<input id="ip" name="ip" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">数据库SID：</label>
+								<div class="col-sm-8">
+									<input id="sid" name="sid" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">用户：</label>
+								<div class="col-sm-8">
+									<input id="user" name="user" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-8">
+									<input id="password" name="password" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">默认空间：</label>
+								<div class="col-sm-8">
+									<input id="freedom" name="freedom" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">大小：</label>
+								<div class="col-sm-8">
+									<input id="size" name="size" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">组件：</label>
+								<div class="col-sm-8">
+									<input id="component" name="component" class="form-control" type="text" list="co">
+									<datalist id="co" >
+
+									</datalist>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">环境：</label>
+								<div class="col-sm-8">
+									<input id="environment" name="environment" class="form-control" type="text" list="en">
+									<datalist id="en" >
+
+									</datalist>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">使用情况：</label>
+								<div class="col-sm-8">
+									<input id="describe" name="describe" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/list/add.js">
+	</script>
+</body>
+</html>

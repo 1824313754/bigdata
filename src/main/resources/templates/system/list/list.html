@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div class="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button shiro:hasPermission="system:list:add" type="button" class="btn  btn-primary" onclick="add()">
+								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button  shiro:hasPermission="system:list:batchRemove" type="button" class="btn  btn-danger"
+								onclick="batchRemove()">
+								<i class="fa fa-trash" aria-hidden="true"></i>删除
+							</button>
+						</div>
+						<div shiro:hasPermission="system:list:chaxun" class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div shiro:hasPermission="system:list:chaxun" class="columns pull-right col-md-2 nopadding">
+							<input id="searchName" type="text" class="form-control"
+								placeholder="请输入数据库SID">
+						</div>
+						<div shiro:hasPermission="system:list:chaxun" class="columns pull-right col-md-2 nopadding">
+							<input id="environment" class="form-control" type="text" list="env" placeholder="请输入环境">
+
+							<datalist id="env" >
+
+
+							</datalist>
+						</div>
+						<div shiro:hasPermission="system:list:chaxun" class="columns pull-right col-md-2 nopadding">
+
+
+							<input id="component" class="form-control" type="text" list="com" placeholder="请输入组件
+">
+							<datalist id="com" >
+
+
+							</datalist>
+						</div>
+						<div shiro:hasPermission="system:list:chaxun" class="columns pull-right col-md-2 nopadding">
+
+							<input id="describe" class="form-control" type="text" list="des" placeholder="请输入使用情况">
+							<datalist id="des" >
+								<option value="已使用">已使用</option>
+								<option value="未使用">未使用</option>
+							</datalist>
+						</div>
+					</div>
+					<table id="exampleTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+		<div>
+			<script type="text/javascript">
+				var s_edit_h = 'hidden';
+				var s_remove_h = 'hidden';
+				var s_resetPwd_h = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:list:edit">
+			<script type="text/javascript">
+				s_edit_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:list:remove">
+			<script type="text/javascript">
+				var s_remove_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:list:resetPwd">
+			<script type="text/javascript">
+				var s_resetPwd_h = '';
+			</script>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/list/list.js"></script>
+</body>
+</html>
